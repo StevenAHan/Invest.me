@@ -3,44 +3,36 @@ from flask import Flask, render_template, request, url_for, flash, redirect, mak
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 import os
+import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
+from sqlalchemy import create_engine, text
 
 app = Flask(__name__)
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
-class files(db.Model):
-    id = db.Column("id", db.Integer, primary_key = True)
-    file_name = db.Column(db.String(100))
-    file_blob = db.Column(db.LargeBinary)
-    def __init__(self, file_name, file_blob):
-        self.file_name = file_name
-        self.file_blob = file_blob
+def getDB():
+    group_username = "quartic_computing"
+    group_password = "lEm25xfjJe4="
+    db_name = "quartic_computing"
 
-with app.app_context():
-    db.create_all()
+    conn_string = 'mysql://{user}:{password}@{host}:{port}/{db}?charset={encoding}'.format(
+        user=group_username, 
+        password=group_password, 
+        host = 'jsedocc7.scrc.nyu.edu', 
+        port = 3306, 
+        encoding = 'utf8',
+        db = db_name
+    )
+    engine = create_engine(conn_string)
+    query = 'SELECT * FROM Quantic_data'
 
-# To insert a file into the database
-def insert_into_database(file):
-    db.session.add(file)
-    db.session.commit()
-
-# To get a file from the database
-def get_from_database(file_name):
-    file = files.query.filter_by(file_name = file_name).first()
-    return file.file_blob
-
-# To remove a file from the database
-def remove_from_database(file_name):
-    file = files.query.filter_by(file_name = file_name).first()
-    db.session.delete(file)
-    db.session.commit()
+    return pd.read_sql_query(sql=text(query), con=engine.connect())
 
 # Default route
 @app.route("/")
 def index():
-    the_files = files.query.all()
-    return render_template("index.html", files=the_files)
+    df = getDB()
+    return render_template("index.html", tables=[df.to_html(classes='data')], titles=df.columns.values)
 
     
 if __name__ == "__main__":
