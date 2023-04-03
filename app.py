@@ -30,10 +30,18 @@ def getDB():
 
 # Default route
 @app.route("/")
-def index():
+def home():
+    return render_template("home.html")
+
+@app.route("/data")
+def data():
     df = getDB()
-    return render_template("index.html", tables=[df.to_html(classes='data')], titles=df.columns.values)
+    return render_template("data.html", tables=[df.to_html(classes='data')], titles=df.columns.values)
 
     
+@app.route("/cry")
+def cry():
+    return render_template("cry.html")
+
 if __name__ == "__main__":
     app.run(debug=True)

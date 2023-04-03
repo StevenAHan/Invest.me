@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %} 
+<section class="yes">
+    <div class="yes-container">
+      <div class="column-left">
+        <h1>Our Table!</h1>
+        {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+        {% endfor %}
+      </div>
+      
+    </div>
+  </section>
+
+
+{% endblock %}
