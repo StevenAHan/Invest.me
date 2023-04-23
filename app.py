@@ -38,17 +38,18 @@ def data():
     df = getDB()
     return render_template("data.html", tables=[df.to_html(classes='data')], titles=df.columns.values)
 
-@app.route("/prompt")
+@app.route("/prompt", methods=["GET", "POST"])
 def prompt():
+    # if the form is submitted
+    if (request.method == "POST"):
+        company = "hi"
+        return render_template("result.html", company=company)
+    
     return render_template("prompt.html")
-
+    
 @app.route("/result")
 def result():
     return render_template("result.html")
-    
-@app.route("/cry")
-def cry():
-    return render_template("cry.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
