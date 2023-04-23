@@ -42,6 +42,10 @@ def data():
 def prompt():
     # if the form is submitted
     if (request.method == "POST"):
+        risk_input = request.form['risk-input']
+        sent_input = request.form["sent-input"]
+        env_input = request.form["env-input"]
+        pol_input = request.form["pol-input"]
         company = "hi"
         return render_template("result.html", company=company)
     
