@@ -14,7 +14,6 @@ nav {
   nav .logo a {
     color: black;
     text-decoration: none;
-    
   }
   
   nav .nav-items a {
@@ -22,15 +21,15 @@ nav {
     text-decoration: none;
     margin-left: 20px;
   }
-
+  
   /* Center the content */
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    background-color: #f7f7f7;
+    min-height: 50vh;
+    height: auto;
     font-family: serif;
   }
   
