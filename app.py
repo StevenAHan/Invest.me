@@ -47,7 +47,8 @@ def prompt():
         env_input = request.form["env-input"]
         pol_input = request.form["pol-input"]
         company = "hi"
-        return render_template("result.html", company=company)
+        listHTML = "<li>You like people</li> <li>Yes</li>"
+        return render_template("result.html", company=company, listHTML=listHTML)
     
     return render_template("prompt.html")
     
