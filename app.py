@@ -38,6 +38,13 @@ def data():
     df = getDB()
     return render_template("data.html", tables=[df.to_html(classes='data')], titles=df.columns.values)
 
+@app.route("/prompt")
+def prompt():
+    return render_template("prompt.html")
+
+@app.route("/result")
+def result():
+    return render_template("result.html")
     
 @app.route("/cry")
 def cry():

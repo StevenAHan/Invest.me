@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %} 
+<h1>Prompt:</h1>
+
+<h3>Please answer these questions so we can tailor our results to you liking! (You can type your results or speak them!)</h3>
+
+<form action="/prompt" method="POST">
+    <label for="risk">Are you a risk taker?</label>
+    <br>
+    <input type="text" name="risk-input" id="risk-input">
+    <br>
+    <label for="environmentality">How much do you care about the environment?</label>
+    <br>
+    <input type="text" name="env-input" id="env-input">
+    <br>
+    <label for="politician">How much do you care about insider trading?</label>
+    <br>
+    <input type="text" name="pol-input" id="pol-input">
+    <br>
+    <label for="sentiment">How much do you care about public sentiment regarding this company?</label>
+    <br>
+    <input type="text" name="sent-input" id="sent-input">
+    <br>
+    <input type="submit" value="submit">
+</form>
+
+{% endblock %}
