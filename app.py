@@ -28,6 +28,11 @@ def getDB():
 
     return pd.read_sql_query(sql=text(query), con=engine.connect())
 
+def convertStringToh3(strList):
+    for i in range(len(strList)):
+        strList[i] = "<h3>" + strList[i] + "</h3>"
+    return strList
+
 # Default route
 @app.route("/")
 def home():
@@ -47,7 +52,7 @@ def prompt():
         env_input = request.form["env-input"]
         pol_input = request.form["pol-input"]
         company = "hi"
-        listHTML = "<li>You like people</li> <li>Yes</li>"
+        listHTML = "<h3>You like people</h3> <h3>Yes</h3> <h3> No </h3>"
         return render_template("result.html", company=company, listHTML=listHTML)
     
     return render_template("prompt.html")
@@ -55,6 +60,11 @@ def prompt():
 @app.route("/result")
 def result():
     return render_template("result.html")
+
+@app.route("/feedback")
+def feedback():
+    return render_template("feedback.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -30,6 +30,7 @@ nav .nav-items a {
   min-height: 50vh;
   height: auto;
   font-family: serif;
+  padding: 50px 0;
 }
 
 h1 {
@@ -47,8 +48,8 @@ p {
   text-align: center;
 }
 
-button {
-  background-color: #1a1aff;
+button, input[type=submit] {
+  background-color: #5E17EB;
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -59,10 +60,10 @@ button {
   transition: all 0.2s ease-in-out;
 }
 
-button:hover {
-  background-color: #0000b3;
+button:hover, input[type=submit]:hover {
+  background-color: #4500ce;
 }
 
-.container {
-  padding: 50px 0;
+.center {
+  text-align: center;
 }

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+<div class="center">
+    <h1>We Care About Your Feedback!</h1>
+
+    <h2>Your Feedback goes directly to our developers and allows us to constantly improve our product.</h2>
+    <h2>Survey:</h2>
+    <form action="/feedback-submitted" method="POST">
+        <label for="Accuracy">Do you think the results matched what you were expecting?</label>
+        <br>
+        <input type="text">
+        <br>
+        <input type="submit">
+    </form>
+</div>
+
+{% endblock %}

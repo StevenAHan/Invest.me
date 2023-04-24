@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %} 
 <h1>Result:</h1>
+<div class="center">
+    <h2>We think that this company is for you: {{company}}</h2>
 
-<h3>We think that this company is for you: {{company}}</h3>
-
-<h3>Why we think this:</h3>
-<ul>
-    {{listHTML|safe}}
-</ul>
-
+    <h2>Why we think this:</h2>
+        {{listHTML|safe}}
+    <button onclick="window.location.href='/prompt';">Try Again?</button>
+    <button onclick="window.location.href='/prompt';">Give Us Feedback!</button>
+</div>
 
 {% endblock %}
