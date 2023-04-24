@@ -11,6 +11,14 @@ nav {
   font-family: serif;
 }
 
+.logo {
+  margin: 0;
+}
+
+.logo img {
+  height: 70px;
+}
+
 nav .logo a {
   color: black;
   text-decoration: none;

@@ -31,7 +31,7 @@ def getDB():
 def convertStringToh3(strList):
     for i in range(len(strList)):
         strList[i] = "<h3>" + strList[i] + "</h3>"
-    return strList
+    return strList.join(" ")
 
 # Default route
 @app.route("/")
@@ -52,7 +52,7 @@ def prompt():
         env_input = request.form["env-input"]
         pol_input = request.form["pol-input"]
         company = "hi"
-        listHTML = "<h3>You like people</h3> <h3>Yes</h3> <h3> No </h3>"
+        listHTML = "<h3>You like people</h3> <h3>You are cool!</h3> <h3>I like you!</h3>"
         return render_template("result.html", company=company, listHTML=listHTML)
     
     return render_template("prompt.html")
