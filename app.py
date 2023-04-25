@@ -65,6 +65,21 @@ def result():
 def feedback():
     return render_template("feedback.html")
 
+@app.route("/company/<string:company_symbol>")
+def company(company_symbol):
+    df = getDB()
+    company = df.loc[df['Symbol'] == company_symbol.upper()].iloc[0].to_dict()
+    return render_template("companyInfo.html", company=company)
+
+@app.route("/companies")
+def companies():
+    df = getDB()
+    company_names = df['Name'].tolist()
+    company_symbols = df["Symbol"].tolist()
+    companiesHTML = ""
+    for i in range(len(company_names)):
+        companiesHTML += f"<a class='companyList' href='/company/{company_symbols[i]}'> {company_names[i]} </a> <br>"
+    return render_template("companies.html", companies=companiesHTML)
 
 if __name__ == "__main__":
     app.run(debug=True)

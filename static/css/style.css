@@ -75,3 +75,22 @@ button:hover, input[type=submit]:hover {
 .center {
   text-align: center;
 }
+
+.companyList {
+  display: inline-block;
+  background-color: #5E17EB;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: serif;
+  transition: all 0.2s ease-in-out;
+}
+
+.companyList:hover {
+  background-color: #4500ce;
+  color: white;
+}
