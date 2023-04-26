@@ -2,7 +2,8 @@
 {% block content %} 
 <h1>Result:</h1>
 <div class="center">
-    <h2>We think that this company is for you: {{company}}</h2>
+    <h2>We think that these companies are for you: </h2>
+    {{companies|safe}}
 
     <h2>Why we think this:</h2>
         {{listHTML|safe}}

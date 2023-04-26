@@ -33,6 +33,18 @@ def convertStringToh3(strList):
         strList[i] = "<h3>" + strList[i] + "</h3>"
     return strList.join(" ")
 
+def convertCompanyDFToButtons(df):
+    company_names = df['Name'].tolist()
+    company_symbols = df["Symbol"].tolist()
+    companiesHTML = ""
+    for i in range(len(company_names)):
+        companiesHTML += f"<a class='companyList' href='/company/{company_symbols[i]}'> {company_names[i]} </a> <br>"
+    return companiesHTML
+
+#TODO
+def getSentiment(input):
+    return .7
+
 # Default route
 @app.route("/")
 def home():
@@ -51,19 +63,35 @@ def prompt():
         sent_input = request.form["sent-input"]
         env_input = request.form["env-input"]
         pol_input = request.form["pol-input"]
-        company = "hi"
-        listHTML = "<h3>You like people</h3> <h3>You are cool!</h3> <h3>I like you!</h3>"
-        return render_template("result.html", company=company, listHTML=listHTML)
+        risk_ss = getSentiment(risk_input)
+        sent_ss = getSentiment(sent_input)
+        env_ss = getSentiment(env_input)
+        pol_ss = getSentiment(pol_input)
+        df = getDB()
+        df = df.head(5)
+        companies = convertCompanyDFToButtons(df)
+        listHTML = ""
+        listHTML += "<p>You like to take risks</p>" if risk_ss > .5 else "<p>You are adverse to risk</p>"
+        listHTML += "<p>You care about public sentiment</p>" if sent_ss > .5 else "<p>You don't care too much about public sentiment</p>"
+        listHTML += "<p>You care a lot about the environment</p>" if env_ss > .5 else "<p>You aren't focused on environmentality</p>"
+        listHTML += "<p>You care about insider trading</p>" if pol_ss > .5 else "<p>You don't care that much about insider trading</p>"
+        return render_template("result.html", companies=companies, listHTML=listHTML)
     
     return render_template("prompt.html")
     
-@app.route("/result")
-def result():
-    return render_template("result.html")
+# @app.route("/result")
+# def result():
+#     return render_template("result.html")
 
 @app.route("/feedback")
 def feedback():
     return render_template("feedback.html")
+
+@app.route("/feedback-submitted", methods=["GET", "POST"])
+def fbsb():
+    if(request.method == "POST"):
+        print("S")
+    return render_template("feedbacksub.html")
 
 @app.route("/company/<string:company_symbol>")
 def company(company_symbol):
@@ -74,11 +102,7 @@ def company(company_symbol):
 @app.route("/companies")
 def companies():
     df = getDB()
-    company_names = df['Name'].tolist()
-    company_symbols = df["Symbol"].tolist()
-    companiesHTML = ""
-    for i in range(len(company_names)):
-        companiesHTML += f"<a class='companyList' href='/company/{company_symbols[i]}'> {company_names[i]} </a> <br>"
+    companiesHTML = convertCompanyDFToButtons(df)
     return render_template("companies.html", companies=companiesHTML)
 
 if __name__ == "__main__":
