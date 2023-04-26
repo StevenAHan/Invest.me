@@ -7,8 +7,36 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 from sqlalchemy import create_engine, text
+import matplotlib.pyplot as plt
+import seaborn as sns
+import requests
+import yfinance as yf
+import numpy as np
+import plotly.express as px
+import datetime
+import plotly
+from dateutil.relativedelta import relativedelta
+import json
 
 app = Flask(__name__)
+
+def get_chart(symbol):
+  end = datetime.date.today() - datetime.timedelta(days=1)
+  start = end - datetime.timedelta(days=650)
+  data = yf.download(symbol, start, end)['Adj Close'].to_frame()
+
+  data['SMA50'] = data['Adj Close'].rolling(50).mean()
+  data['SMA200'] = data['Adj Close'].rolling(200).mean()
+  data.dropna(inplace=True)
+  data.reset_index(inplace=True)
+
+  dates = pd.date_range(start=start, end=end, freq='MS')
+  fig = px.line(data,x="Date", y=['Adj Close','SMA50', 'SMA200'], title=symbol+' Stock Price Versus 50 & 200 Moving Averages')
+  fig.update_layout(yaxis_title='Price',
+                    xaxis={'tickmode': 'array', 'tickvals': dates, 
+                    'ticktext': [d.strftime('%b %Y') for d in dates]},
+                    legend_title = 'Values')
+  return fig
 
 def getDB():
     group_username = "quartic_computing"
@@ -45,6 +73,7 @@ def convertCompanyDFToButtons(df):
 def getSentiment(input):
     return .7
 
+
 # Default route
 @app.route("/")
 def home():
@@ -75,6 +104,7 @@ def prompt():
         listHTML += "<p>You care about public sentiment</p>" if sent_ss > .5 else "<p>You don't care too much about public sentiment</p>"
         listHTML += "<p>You care a lot about the environment</p>" if env_ss > .5 else "<p>You aren't focused on environmentality</p>"
         listHTML += "<p>You care about insider trading</p>" if pol_ss > .5 else "<p>You don't care that much about insider trading</p>"
+
         return render_template("result.html", companies=companies, listHTML=listHTML)
     
     return render_template("prompt.html")
@@ -97,7 +127,9 @@ def fbsb():
 def company(company_symbol):
     df = getDB()
     company = df.loc[df['Symbol'] == company_symbol.upper()].iloc[0].to_dict()
-    return render_template("companyInfo.html", company=company)
+    fig = get_chart(company_symbol)
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    return render_template("companyInfo.html", company=company, graphJSON=graphJSON)
 
 @app.route("/companies")
 def companies():

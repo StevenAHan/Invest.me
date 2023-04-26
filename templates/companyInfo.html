@@ -4,5 +4,13 @@
 
 <p>Symbol: {{company["Symbol"]}}</p>
 <p>{{company["Description"]}}</p>
+<div id='chart' class='chart'”></div>
+{% endblock %}
 
+{% block after %}
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script type='text/javascript'>
+  var graphs = {{graphJSON | safe}};
+  Plotly.plot('chart',graphs,{});
+</script>
 {% endblock %}
