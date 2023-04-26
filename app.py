@@ -40,6 +40,7 @@ def get_chart(symbol):
 
 def esg_pie(companies):
   df_pie = pd.DataFrame(companies)
+  df = getDB()
   df_pie['totalEsg'] = df['totalEsg']
 
 
