@@ -1,5 +1,19 @@
 /* Created by ChatGPT: I asked for an example professional css. */
 
+@font-face {
+  font-family: 'Avenir';
+  src: url('../font/AvenirLTStd-Roman.otf');
+}
+
+@font-face {
+  font-family: 'Tiempos';
+  src: url('../font/TiemposHeadline-Bold.otf');
+}
+
+* {
+  /* font-family: Avenir, serif; */
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -8,7 +22,7 @@ nav {
   color: black;
   font-size: 18px;
   font-weight: bold;
-  font-family: serif;
+  font-family: Avenir, serif;
 }
 
 .logo {
@@ -37,7 +51,7 @@ nav .nav-items a {
   flex-direction: column;
   min-height: 50vh;
   height: auto;
-  font-family: serif;
+  font-family: Tiempos, serif;
   padding: 50px 0;
 }
 
