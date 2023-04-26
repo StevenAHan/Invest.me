@@ -1,4 +1,16 @@
 {% extends 'base.html' %}
+
+{% block header%} 
+<style>
+  body {
+    background-image: url("{{ url_for('static', filename='img/bckgrnd.jpg')}}");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+{% endblock %}
+
+
 {% block content %} 
 <div class="container">
   <h1>Stock Personalizer</h1>
