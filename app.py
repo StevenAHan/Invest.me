@@ -4,8 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 import os
 import pandas as pd
-import matplotlib
-import matplotlib.pyplot as plt
 from sqlalchemy import create_engine, text
 import matplotlib.pyplot as plt
 import seaborn as sns
