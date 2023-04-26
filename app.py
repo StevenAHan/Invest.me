@@ -17,6 +17,8 @@ import datetime
 import plotly
 from dateutil.relativedelta import relativedelta
 import json
+import pymysql
+pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 
