@@ -38,6 +38,16 @@ def get_chart(symbol):
                     legend_title = 'Values')
   return fig
 
+def esg_pie(companies):
+  df_pie = pd.DataFrame(companies)
+  df_pie['totalEsg'] = df['totalEsg']
+
+
+  fig = px.pie(df_pie, values = 'totalEsg', names = 'Symbol', title='ESG Score Percentages of Selected Companies',
+               hole = .2)
+  fig.update_traces(textposition='inside', textinfo='percent+label')
+  return fig
+
 def getDB():
     group_username = "quartic_computing"
     group_password = "lEm25xfjJe4="
