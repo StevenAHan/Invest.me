@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %} 
-<h1>{{company["Name"]}}</h1>
+<h1 class='compName'>{{company["Name"]}}</h1>
 
-<p>Symbol: {{company["Symbol"]}}</p>
-<p>{{company["Description"]}}</p>
+<p class='compSymbol'>Symbol: {{company["Symbol"]}}</p>
+<p class='description'>{{company["Description"]}}</p>
 <div id='chart' class='chart'></div>
 {% endblock %}
 
