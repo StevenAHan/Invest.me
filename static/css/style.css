@@ -85,6 +85,7 @@ p.description{
   margin-top: 20px;
   margin-bottom: 40px;
   text-align: center;
+  border-style: ;
 }
 
 p {
@@ -155,3 +156,12 @@ nav::before { /* Add pseudo-element to both the nav and container */
   background-color: rgba(255, 255, 255, 0.3);
   z-index: -1;
 } */
+
+.chart {
+  align-self: flex-start;
+  position: absolute;
+  left: 25px;
+  width: 700px;
+  border: 3px solid #4500ce;
+  padding: 10px;
+}

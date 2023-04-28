@@ -8,8 +8,8 @@
 {% endblock %}
 
 {% block after %}
-<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-<script type='text/javascript'>
+<script class='chart' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script class='chart' type='text/javascript'>
   var graphs = {{graphJSON | safe}};
   Plotly.plot('chart',graphs,{});
 </script>
