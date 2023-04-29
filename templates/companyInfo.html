@@ -8,9 +8,35 @@
 {% endblock %}
 
 {% block after %}
-<script class='chart' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-<script class='chart' type='text/javascript'>
-  var graphs = {{graphJSON | safe}};
-  Plotly.plot('chart',graphs,{});
-</script>
+
+  <h2 class="SubHeading"> Financial Data</h2>
+  <div class = 'chart'>
+    <script class='chart' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script class='chart' type='text/javascript'>
+      var graphs = {{graphJSON | safe}};
+      Plotly.plot('chart',graphs,{});
+    </script>
+
+
+  <ul class="list">
+    <li>Stock Price: {{company["StockPrice"]}}</li>
+  </ul>
+</div>
+
+
+<h2 class='SubHeading'>  ESG, Politicial Trading, and Sentiment Information </h3>
+<table id='table'>
+  <tr>
+    <td>Sector: {{company["Sector"]}}</td> 
+    <td>Industry: {{company["Industry"]}}</td>
+    <td>Environment Score: {{company["environmentScore"]}}</td>
+    <td>Governance Score: {{company["governanceScore"]}}</td>
+  </tr>
+  <tr>
+    <td>Social Score: {{company["socialScore"]}}</td>
+    <td>Total ESG: {{company["totalEsg"]}}</td>
+    <td>Politicians Traded: {{company["politician_count"]}}</td>
+    <td>Sentiment Score: {{company["Sentiment Score"]}}</td>
+  </tr>
+</table>
 {% endblock %}

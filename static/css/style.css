@@ -159,9 +159,30 @@ nav::before { /* Add pseudo-element to both the nav and container */
 
 .chart {
   align-self: flex-start;
-  position: absolute;
+  position: static;
   left: 25px;
-  width: 700px;
   border: 3px solid #4500ce;
-  padding: 10px;
+  padding: 0px;
+
 }
+
+h2.SubHeading{
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  text-align: center;
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+table td{
+  padding: 10px;
+  text-align: center;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+}
+
