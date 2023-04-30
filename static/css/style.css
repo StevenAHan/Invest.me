@@ -85,7 +85,6 @@ p.description{
   margin-top: 20px;
   margin-bottom: 40px;
   text-align: center;
-  border-style: ;
 }
 
 p {
@@ -96,11 +95,11 @@ p {
   text-align: center;
 }
 
-button, input[type=submit] {
+.button, input[type=submit] {
   background-color: #5E17EB;
   border: none;
   border-radius: 5px;
-  color: #fff;
+  color: #ffffff !important;
   font-size: 20px;
   font-weight: 500;
   padding: 10px 20px;
@@ -108,7 +107,7 @@ button, input[type=submit] {
   transition: all 0.2s ease-in-out;
 }
 
-button:hover, input[type=submit]:hover {
+.button:hover, input[type=submit]:hover {
   background-color: #4500ce;
 }
 
@@ -186,3 +185,23 @@ table td{
   font-size: 20px;
 }
 
+/* .button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #4500ce;
+  text-color: #ffffff;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #3e8e41;
+}
+
+.button:active {
+  background-color: #1e7f38;
+} */
