@@ -1,26 +1,26 @@
 {% extends 'base.html' %}
 {% block content %} 
-<h1>Prompt:</h1>
-<div class="center">
+<h1 class="title">Prompt:</h1>
+<div>
     <h2>Our proprietary machine learning algorithm custom tailors the results to YOU.
         Please answer these questions so we can tailor our results to your liking! (You can type your results or speak them!)</h2>
     
 </div>
 
 <form action="/prompt" method="POST">
-    <label for="risk">Are you a risk taker?</label>
+    <label for="risk" class="question">Are you a risk taker?</label>
     <br>
     <textarea rows="10" cols="50" name="risk-input" placeholder=""></textarea>
     <br>
-    <label for="environmentality">How much do you care about the environment?</label>
+    <label for="environmentality" class="question">How much do you care about the environment?</label>
     <br>
     <textarea rows="10" cols="50" name="env-input" placeholder=""></textarea>
     <br>
-    <label for="politician">How much do you care about insider trading?</label>
+    <label for="politician" class="question">How much do you care about insider trading?</label>
     <br>
     <textarea rows="10" cols="50" name="pol-input" placeholder=""></textarea>
     <br>
-    <label for="sentiment">How much do you care about public sentiment regarding this company?</label>
+    <label for="sentiment" class="question">How much do you care about public sentiment regarding this company?</label>
     <br>
     <textarea rows="10" cols="50" name="sent-input" placeholder=""></textarea>
     <br>
