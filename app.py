@@ -38,7 +38,7 @@ def get_chart(symbol):
     fig.update_layout(yaxis_title='Price',
                       xaxis={'tickmode': 'array', 'tickvals': dates,
                              'ticktext': [d.strftime('%b %Y') for d in dates]},
-                      legend_title='Values')
+                      legend_title='Indicator')
     return fig
 
 
