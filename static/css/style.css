@@ -22,7 +22,7 @@ nav {
   color: black;
   font-size: 18px;
   font-weight: bold;
-  /* font-family: Avenir, serif; */
+  font-family: Avenir, serif;
 }
 
 .logo {
@@ -44,7 +44,7 @@ nav .logo a {
 }
 
 .question {
-  /* font-family: Avenir, serif; */
+  font-family: Avenir, serif;
   font-size: 20px;
   font-weight: 500;
   margin-top: 20px;
@@ -201,7 +201,7 @@ table td{
   text-align: center;
   text-decoration: none;
   background-color: #4500ce;
-  text-color: #ffffff;
+  color: #ffffff;
   transition: background-color 0.3s ease-in-out;
 }
 
