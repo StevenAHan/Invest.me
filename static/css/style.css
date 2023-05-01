@@ -125,6 +125,7 @@ p {
   transition: all 0.2s ease-in-out;
 }
 
+
 .button:hover, input[type=submit]:hover {
   background-color: #4500ce;
 }
@@ -173,7 +174,7 @@ nav::before { /* Add pseudo-element to both the nav and container */
 }
 
 h2.SubHeading{
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: 'Tiempos', sans-serif;
   font-size: 25px;
   font-weight: bold;
   letter-spacing: -1px;
