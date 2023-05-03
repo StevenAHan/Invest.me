@@ -71,6 +71,10 @@ def getDB():
 
     return pd.read_sql_query(sql=text(query), con=engine.connect())
 
+#TODO
+def uploadFeedback(feedback):
+    pass
+
 
 def convertStringToh3(strList):
     for i in range(len(strList)):
@@ -203,6 +207,7 @@ def company(company_symbol):
     company = df.loc[df['Symbol'] == company_symbol.upper()].iloc[0].to_dict()
     fig = get_chart(company_symbol)
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    company["PredictedPrice"] = round(company["PredictedPrice"], 2)
     return render_template("companyInfo.html", company=company, graphJSON=graphJSON)
 
 
