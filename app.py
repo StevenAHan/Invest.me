@@ -176,7 +176,11 @@ def prompt():
         listHTML += "<p>You care a lot about the environment</p>" if env_ss > 0 else "<p>You aren't focused on environmentality</p>"
         listHTML += "<p>You care about insider trading</p>" if pol_ss > 0 else "<p>You don't care that much about insider trading</p>"
 
-        return render_template("result.html", companies=companies, listHTML=listHTML)
+        compList = df['Symbol'].head(5)
+        fig = esg_pie(compList)
+        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
+        return render_template("result.html", companies=companies, listHTML=listHTML, graphJSON=graphJSON)
 
     return render_template("prompt.html")
 
