@@ -18,8 +18,30 @@
     </script>
 
   <ul class="list">
-    <li>Stock Price: {{company["StockPrice"]}}</li>
+    <li>Stock Price:&ensp;<span id='stock-price'></span></li>
+    <li>Market Capitalization:&ensp;<span id='market-cap'></span></li>
+    <li>52 Week Range:&ensp;<span id='52-week-range'></span></li>
+    <li>Beta:&ensp;<span id='beta'></span></li>
+    <li>EPS (TTM):&ensp;<span id='eps'></span></li>
+    <li>P/E (TTM):&ensp;<span id='pe-ratio'></span></li>
+    <li>EBITDA (TTM):&ensp;<span id='ebitda'></span></li>
+    <li>ROE (TTM):&ensp;<span id='roe'></span></li> 
   </ul>
+  
+  <script>
+  function formatDollarValue(value) {
+    return "$" + value.toLocaleString("en-US");
+  }
+  document.getElementById("stock-price").textContent = formatDollarValue({{company["StockPrice"]}});
+  document.getElementById("market-cap").textContent = formatDollarValue({{company["MarketCapitalization"]}});
+  document.getElementById("52-week-range").textContent = formatDollarValue({{company["52WeekLow"]}}) + "-" + formatDollarValue({{company["52WeekHigh"]}});
+  document.getElementById("beta").textContent = {{company["Beta"]}}.toFixed(2);
+  document.getElementById("eps").textContent = formatDollarValue({{company["EPS"]}});
+  document.getElementById("pe-ratio").textContent = {{company["PERatio"]}}.toFixed(2);
+  document.getElementById("ebitda").textContent = formatDollarValue({{company["EBITDA"]}});
+  document.getElementById("roe").textContent = {{company["ReturnOnEquityTTM"]}}.toFixed(2);
+  </script>
+  
 </div>
 
 
