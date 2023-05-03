@@ -7,9 +7,17 @@
     <h2>Your Feedback goes directly to our developers and allows us to constantly improve our product.</h2>
     <h2>Survey:</h2>
     <form action="/feedback-submitted" method="POST">
-        <label for="Accuracy">Do you think the results matched what you were expecting?</label>
+        <label for="Accuracy">Were you satisfied with your results?</label>
         <br>
-        <input type="text">
+        <input type="text" name="Accuracy">
+        <br>
+        <label for="Spreadability">Would you recommend this to your friends?</label>
+        <br>
+        <input type="text" name="Spreadability">
+        <br>
+        <label for="Questions">Any other comments/feedback?</label>
+        <br>
+        <input type="text" name="Questions">
         <br>
         <input type="submit">
     </form>
