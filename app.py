@@ -52,6 +52,51 @@ def esg_pie(companies):
     fig.update_traces(textposition='inside', textinfo='percent+label')
     return fig
 
+def financials_chart(companies):
+    df_chart = pd.DataFrame(companies)
+    df = getDB()
+    df_chart['Company'] = df['Symbol']
+    df_chart['Profit Margin'] = df['ProfitMargin']
+    df_chart['Operating Margin'] = df['OperatingMarginTTM']
+    df_chart['Return on Assets'] = df['ReturnOnAssetsTTM']
+    df_chart['Return on Equity'] = df['ReturnOnEquityTTM']
+    df_chart['Revenue'] = df['RevenueTTM']
+
+    fig = px.bar(df_chart, x='Company', y='Profit Margin', barmode='group')
+
+    dropdown_options = [
+        {'label': 'Profit Margin', 'value': 'Profit Margin'},
+        {'label': 'Operating Margin', 'value': 'Operating Margin'},
+        {'label': 'Return on Assets', 'value': 'Return on Assets'},
+        {'label': 'Return on Equity', 'value': 'Return on Equity'},
+        {'label': 'Revenue', 'value': 'Revenue'}
+    ]
+
+    fig.update_layout(
+        updatemenus=[
+            dict(
+                buttons=list([
+                    dict(
+                        label=option['label'],
+                        method='update',
+                        args=[{'y': [df_chart[option['value']]]}],
+                        args2=[{'yaxis.title.text': option['label']}]
+                    )
+                    for option in dropdown_options
+                ]),
+                active=0,
+                showactive=True,
+                direction='down',
+                xanchor='left',
+                yanchor='top',
+                y=1.15,
+                x=0.02,
+                pad={'r':10,'t':10}
+            )
+        ],
+        yaxis_title='Operating Metric'
+    )
+    return fig
 
 def getDB():
     group_username = "quartic_computing"
@@ -182,9 +227,12 @@ def prompt():
 
         compList = df['Symbol'].head(5)
         fig = esg_pie(compList)
-        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+        graphJSON1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
-        return render_template("result.html", companies=companies, listHTML=listHTML, graphJSON=graphJSON)
+        fig2 = financials_chart(compList)
+        graphJSON2 = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
+
+        return render_template("result.html", companies=companies, listHTML=listHTML, graphJSON1=graphJSON1, graphJSON2=graphJSON2)
 
     return render_template("prompt.html")
 

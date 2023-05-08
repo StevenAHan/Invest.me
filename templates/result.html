@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %} 
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <h1>Result:</h1>
 <div class="center">
     <h2>We think that these companies are for you: </h2>
@@ -10,14 +11,21 @@
     <button onclick="window.location.href='/prompt';" class="button">Try Again?</button>
     <button onclick="window.location.href='/feedback';" class="button">Give Us Feedback!</button>
 </div>
-<div id='chart' class='chart'></div>
+<div id='chart1' class='chart1'></div>
+<div id='chart2' class='chart2'></div>
 {% endblock %}
 
 {% block after %}
-<script class='chart' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-<script class='chart' type='text/javascript'>
-    var graphs = {{graphJSON | safe}};
-    Plotly.plot('chart',graphs,{});
+<script class='chart1' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script class='chart1' type='text/javascript'>
+    var graphs = {{graphJSON1 | safe}};
+    Plotly.plot('chart1',graphs,{});
+</script>
+<div id='chart2' class='chart2'></div>
+<script class='chart2' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script class='chart2' type='text/javascript'>
+    var graphs = {{graphJSON2 | safe}};
+    Plotly.plot('chart2',graphs,{});
 </script>
 
 {% endblock %}
