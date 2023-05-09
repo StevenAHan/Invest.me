@@ -21,7 +21,6 @@ pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 
-
 def get_chart(symbol):
     end = datetime.date.today() - datetime.timedelta(days=1)
     start = end - datetime.timedelta(days=650)
