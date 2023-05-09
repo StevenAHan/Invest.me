@@ -116,6 +116,24 @@ def getDB():
 
     return pd.read_sql_query(sql=text(query), con=engine.connect()).tail(-1)
 
+def getFeedback():
+    group_username = "quartic_computing"
+    group_password = "lEm25xfjJe4="
+    db_name = "quartic_computing"
+
+    conn_string = 'mysql://{user}:{password}@{host}:{port}/{db}?charset={encoding}'.format(
+        user=group_username,
+        password=group_password,
+        host='jsedocc7.scrc.nyu.edu',
+        port=3306,
+        encoding='utf8',
+        db=db_name
+    )
+    engine = create_engine(conn_string)
+    query = 'SELECT * FROM Survey_data'
+
+    return pd.read_sql_query(sql=text(query), con=engine.connect())
+
 def uploadFeedback(acc, spread, questions):
     group_username = "quartic_computing"
     group_password = "lEm25xfjJe4="
@@ -191,6 +209,11 @@ def home():
 def data():
     df = getDB()
     return render_template("data.html", tables=[df.to_html(classes='data')], titles=df.columns.values)
+
+@app.route("/getfeedback")
+def fbdata():
+    df = getFeedback()
+    return render_template("feedbackdata.html", tables=[df.to_html(classes='fb')], titles=df.columns.values)
 
 
 def filtered_df(risk_input, sent_input, env_input, pol_input, df):
