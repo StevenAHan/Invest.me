@@ -114,11 +114,34 @@ def getDB():
     engine = create_engine(conn_string)
     query = 'SELECT * FROM Quantic_data'
 
-    return pd.read_sql_query(sql=text(query), con=engine.connect())
+    return pd.read_sql_query(sql=text(query), con=engine.connect()).tail(-1)
 
-#TODO
-def uploadFeedback(feedback):
-    pass
+def uploadFeedback(acc, spread, questions):
+    group_username = "quartic_computing"
+    group_password = "lEm25xfjJe4="
+    db_name = "quartic_computing"
+
+    conn_string = 'mysql://{user}:{password}@{host}:{port}/{db}?charset={encoding}'.format(
+        user=group_username,
+        password=group_password,
+        host='jsedocc7.scrc.nyu.edu',
+        port=3306,
+        encoding='utf8',
+        db=db_name
+    )
+    engine = create_engine(conn_string)
+    df = pd.read_sql_query(sql=text("SELECT * FROM Survey_data"), con=engine.connect()).tail(-1)
+    new_row = {'Accuracy': acc, 'Spreadability': spread, 'Questions': questions}
+    df = df.append(new_row, ignore_index=True)
+    # This is for speeding up the insertion into the database schema
+    df.to_sql(name= "Survey_data",
+          con=engine,
+          if_exists='replace',
+          index=False,
+          chunksize=1000,
+          method='multi'
+    )
+
 
 
 def convertStringToh3(strList):
@@ -136,7 +159,6 @@ def convertCompanyDFToButtons(df):
     return companiesHTML
 
 
-# TODO
 def getSentiment(input):
     endpoint = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/3d4468af-8ad0-4453-9535-72f90c9eb5c4/v1/analyze"
 
@@ -249,7 +271,7 @@ def feedback():
 @app.route("/feedback-submitted", methods=["GET", "POST"])
 def fbsb():
     if (request.method == "POST"):
-        print("S")
+        uploadFeedback(request.form["Accuracy"], request.form["Spreadability"], request.form["Questions"])
     return render_template("feedbacksub.html")
 
 
