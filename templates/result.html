@@ -1,16 +1,28 @@
 {% extends 'base.html' %}
 {% block content %} 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<h1>Result:</h1>
-<div class="center">
-    <h2>We think that these companies are for you: </h2>
-    {{companies|safe}}
-
-    <h2>Why we think this:</h2>
+<header class = "parallax-header2">
+    <img src="static/img/usadigital.png" class="background2">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>br><br>
+    <h1 class = "sp500-title2">Results</h1>
+</header>
+<h2 class="company-recommendations">We think that these companies are for you: </h2>
+<div class="data-shell">
+        <div class="companies-container-special">
+            {{companies|safe}}
+        </div>
+</div>
+<div class="justification-container">
+    <ul>
         {{listHTML|safe}}
+    </ul>
+</div>
+<div class="resultbutton-wrapper">
     <button onclick="window.location.href='/prompt';" class="button">Try Again?</button>
     <button onclick="window.location.href='/feedback';" class="button">Give Us Feedback!</button>
 </div>
+<h2 class = "results-elaborate">Click the tiles for more detailed projections and financial data</h2>
+<h2 class="results-elaborate2">Portfolio overview below</h2>
 <div id='chart1' class='chart1'></div>
 <div id='chart2' class='chart2'></div>
 {% endblock %}
@@ -27,5 +39,6 @@
     var graphs = {{graphJSON2 | safe}};
     Plotly.plot('chart2',graphs,{});
 </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src = "static/result.js"></script>
 {% endblock %}

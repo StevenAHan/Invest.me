@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
 {% block content %} 
-<h1 class="title">List of S&P 500 Companies:</h1>
 <br>
-<div class="center">
-    {{companies|safe}}
+<div class="parallax-wrapper">
+    <header class = "parallax-header">
+        <img src="static/img/chart.png" class="background">
+        <img src="static/img/spforeground.png" class = "foreground">
+        <br><br><br>
+        <h1 class = "sp500-title">List of S&P 500 Companies</h1>
+    </header>
+    <div class="companies-container">
+        <div class="company">
+            <a class='companyList' href='/company/MSFT'> Macrohard </a>
+        </div>
+        <div class="company">
+            <a class='companyList' href='/company/MSFT'> Macrohard </a>
+        </div>
+        <div class="company">
+            <a class='companyList' href='/company/MSFT'> Macrohard </a>
+        </div>
+        {{companies|safe}}
+    </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src = "static/companies.js"></script>
 {% endblock %}

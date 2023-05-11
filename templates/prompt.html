@@ -1,30 +1,37 @@
 {% extends 'base.html' %}
 {% block content %} 
-<h1 class="title">Prompt:</h1>
-<div>
-    <h2>Our proprietary machine learning algorithm custom tailors the results to YOU.
-        Please answer these questions so we can tailor our results to your liking! (You can type your results or speak them!)</h2>
-    
+<h1 class="prompt-bigtitle">Prompt:</h1>
+<div class = "prompt-container">
+    <h2 class="prompt-title"> 
+        Based on your individual financial goals and selection criteria, deep-learning models will generate your personalized stock-portfolio.
+    </h2>
+    <h3 class="prompt-subtitle">
+        For greatest accessibility, questions can be both typed or spoken.
+    </h3>
 </div>
 
-<form action="/prompt" method="POST">
-    <label for="risk" class="question">Do you like taking risks?</label>
-    <br>
-    <textarea rows="10" cols="50" name="risk-input" placeholder=""></textarea>
-    <br>
-    <label for="environmentality" class="question">How much do you care about the environment?</label>
-    <br>
-    <textarea rows="10" cols="50" name="env-input" placeholder=""></textarea>
-    <br>
-    <label for="politician" class="question">How much do you care about insider trading?</label>
-    <br>
-    <textarea rows="10" cols="50" name="pol-input" placeholder=""></textarea>
-    <br>
-    <label for="sentiment" class="question">How much do you care about public sentiment regarding this company?</label>
-    <br>
-    <textarea rows="10" cols="50" name="sent-input" placeholder=""></textarea>
-    <br>
-    <input type="submit" value="submit">
-</form>
+<div class="form-wrapper">
+    <form action="/prompt" method="POST">
+        <label for="risk" class="question">Do you like taking risks?</label>
+        <br>
+        <textarea rows="3" cols="165" name="risk-input" placeholder=""></textarea>
+        <br>
+        <label for="environmentality" class="question">How much do you care about the environment?</label>
+        <br>
+        <textarea rows="3" cols="165" name="env-input" placeholder=""></textarea>
+        <br>
+        <label for="politician" class="question">How much do you care about insider trading?</label>
+        <br>
+        <textarea rows="3" cols="165" name="pol-input" placeholder=""></textarea>
+        <br>
+        <label for="sentiment" class="question">How much do you care about public sentiment regarding this company?</label>
+        <br>
+        <textarea rows="3" cols="165" name="sent-input" placeholder=""></textarea>
+        <br>
+        <input class = "promptsubmitbutton" type="submit" value="submit">
+    </form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src = "static/prompt.js"></script>
 
 {% endblock %}

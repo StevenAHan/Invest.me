@@ -2,16 +2,16 @@
 {% block content %} 
 
 {{back_button|safe}}
-<h1 class='compName'>{{company["Name"]}}</h1>
+  <h1 class='compName'>{{company["Name"]}}</h1>
 
-<p class='compSymbol'>Symbol: {{company["Symbol"]}}</p>
-<p>Stock Price: ${{company["StockPrice"]}} Predicted Price: ${{company["PredictedPrice"]}}</p>
-<p class='description'>{{company["Description"]}}</p>
-<div id='chart' class='chart'></div>
+  <p class='compSymbol'>Symbol: {{company["Symbol"]}}</p>
+  <p>Stock Price: ${{company["StockPrice"]}} Predicted Price: ${{company["PredictedPrice"]}}</p>
+  <p class='description'>{{company["Description"]}}</p>
+  <div id='chart' class='chart'></div>
 {% endblock %}
 
 {% block after %}
-
+<div class="marginkeeper">
   <h2 class="SubHeading"> Financial Data</h2>
   <div class = 'chart'>
     <script class='chart' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
@@ -20,47 +20,47 @@
       Plotly.plot('chart',graphs,{});
     </script>
 
-  <ul class="list">
-    <li>Stock Price:&ensp;<span id='stock-price'></span></li>
-    <li>Market Capitalization:&ensp;<span id='market-cap'></span></li>
-    <li>52 Week Range:&ensp;<span id='52-week-range'></span></li>
-    <li>Beta:&ensp;<span id='beta'></span></li>
-    <li>EPS (TTM):&ensp;<span id='eps'></span></li>
-    <li>P/E (TTM):&ensp;<span id='pe-ratio'></span></li>
-    <li>EBITDA (TTM):&ensp;<span id='ebitda'></span></li>
-    <li>ROE (TTM):&ensp;<span id='roe'></span></li> 
-  </ul>
+    <ul class="list">
+      <li>Stock Price:&ensp;<span id='stock-price'></span></li>
+      <li>Market Capitalization:&ensp;<span id='market-cap'></span></li>
+      <li>52 Week Range:&ensp;<span id='52-week-range'></span></li>
+      <li>Beta:&ensp;<span id='beta'></span></li>
+      <li>EPS (TTM):&ensp;<span id='eps'></span></li>
+      <li>P/E (TTM):&ensp;<span id='pe-ratio'></span></li>
+      <li>EBITDA (TTM):&ensp;<span id='ebitda'></span></li>
+      <li>ROE (TTM):&ensp;<span id='roe'></span></li> 
+    </ul>
   
-  <script>
-  function formatDollarValue(value) {
-    return "$" + value.toLocaleString("en-US");
-  }
-  document.getElementById("stock-price").textContent = formatDollarValue({{company["StockPrice"]}});
-  document.getElementById("market-cap").textContent = formatDollarValue({{company["MarketCapitalization"]}});
-  document.getElementById("52-week-range").textContent = formatDollarValue({{company["52WeekLow"]}}) + "-" + formatDollarValue({{company["52WeekHigh"]}});
-  document.getElementById("beta").textContent = {{company["Beta"]}}.toFixed(2);
-  document.getElementById("eps").textContent = formatDollarValue({{company["EPS"]}});
-  document.getElementById("pe-ratio").textContent = {{company["PERatio"]}}.toFixed(2);
-  document.getElementById("ebitda").textContent = formatDollarValue({{company["EBITDA"]}});
-  document.getElementById("roe").textContent = {{company["ReturnOnEquityTTM"]}}.toFixed(2);
-  </script>
-  
+      <script>
+      function formatDollarValue(value) {
+        return "$" + value.toLocaleString("en-US");
+      }
+      document.getElementById("stock-price").textContent = formatDollarValue({{company["StockPrice"]}});
+      document.getElementById("market-cap").textContent = formatDollarValue({{company["MarketCapitalization"]}});
+      document.getElementById("52-week-range").textContent = formatDollarValue({{company["52WeekLow"]}}) + "-" + formatDollarValue({{company["52WeekHigh"]}});
+      document.getElementById("beta").textContent = {{company["Beta"]}}.toFixed(2);
+      document.getElementById("eps").textContent = formatDollarValue({{company["EPS"]}});
+      document.getElementById("pe-ratio").textContent = {{company["PERatio"]}}.toFixed(2);
+      document.getElementById("ebitda").textContent = formatDollarValue({{company["EBITDA"]}});
+      document.getElementById("roe").textContent = {{company["ReturnOnEquityTTM"]}}.toFixed(2);
+      </script>
+  </div>
+
+
+  <h2 class='SubHeading'>  ESG, Politicial Trading, and Sentiment Information </h3>
+  <table id='table'>
+    <tr>
+      <td>Sector: {{company["Sector"]}}</td> 
+      <td>Industry: {{company["Industry"]}}</td>
+      <td>Environment Score: {{company["environmentScore"]}}</td>
+      <td>Governance Score: {{company["governanceScore"]}}</td>
+    </tr>
+    <tr>
+      <td>Social Score: {{company["socialScore"]}}</td>
+      <td>Total ESG: {{company["totalEsg"]}}</td>
+      <td>Politicians Traded: {{company["politican_count"]}}</td>
+      <td>Sentiment Score: {{company["Sentiment Score"]}}</td>
+    </tr>
+  </table>
 </div>
-
-
-<h2 class='SubHeading'>  ESG, Politicial Trading, and Sentiment Information </h3>
-<table id='table'>
-  <tr>
-    <td>Sector: {{company["Sector"]}}</td> 
-    <td>Industry: {{company["Industry"]}}</td>
-    <td>Environment Score: {{company["environmentScore"]}}</td>
-    <td>Governance Score: {{company["governanceScore"]}}</td>
-  </tr>
-  <tr>
-    <td>Social Score: {{company["socialScore"]}}</td>
-    <td>Total ESG: {{company["totalEsg"]}}</td>
-    <td>Politicians Traded: {{company["politican_count"]}}</td>
-    <td>Sentiment Score: {{company["Sentiment Score"]}}</td>
-  </tr>
-</table>
 {% endblock %}
