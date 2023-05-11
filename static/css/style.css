@@ -170,6 +170,10 @@ p {
   transition: all 0.2s ease-in-out;
 }
 
+label {
+  font-size: 20px;
+}
+
 .companyList:hover {
   background-color: #4500ce;
   color: white;
@@ -197,7 +201,7 @@ nav::before { /* Add pseudo-element to both the nav and container */
 
 h2.SubHeading{
   font-family: 'Tiempos', sans-serif;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   letter-spacing: -1px;
   text-align: center;
@@ -234,7 +238,69 @@ table td{
 
 .resultbutton-wrapper {
   justify-content: center;
+  text-align: center;
 }
+
+/* .justification-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 1.2rem;
+} */
+
+.justification-container li {
+  list-style-type: none;
+  list-style: none;
+  font-size: 20px;
+ }
+
+ .companies-container {
+  display: grid;
+  padding: 6rem;
+  grid-gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  background-color: white;
+}
+
+.companies-container-special {
+  display: grid;
+  padding: 1rem;
+  grid-gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  background-color: white;
+  margin-bottom: 0;
+}
+
+.button {
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+
+.button:hover, a:hover, input[type=submit]:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.logo:hover {
+  box-shadow: none;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+/* 
+.chart1 {
+  width: 40%;
+  display: inline-block;
+}
+
+.chart2 {
+  width: 40%;
+  display: inline-block;
+
+} */
+
 
 /* .button {
   display: inline-block;

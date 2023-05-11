@@ -50,7 +50,7 @@ def esg_pie(companies):
     df_pie = pd.DataFrame(companies)
     df = getDB()
     df_pie['totalEsg'] = df['totalEsg']
-    fig = px.pie(df_pie, values='totalEsg', names='Symbol', title='ESG Score Percentages of Selected Companies',
+    fig = px.pie(df_pie, values='totalEsg', names='Symbol', title='Environmental, social, and governance (ESG) Score Percentages of Selected Companies',
                  hole=.2)
     fig.update_traces(textposition='inside', textinfo='percent+label')
     return fig

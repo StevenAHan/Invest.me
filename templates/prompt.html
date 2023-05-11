@@ -14,19 +14,26 @@
     <form action="/prompt" method="POST">
         <label for="risk" class="question">Do you like taking risks?</label>
         <br>
-        <textarea rows="3" cols="165" name="risk-input" placeholder=""></textarea>
+        <br>
+        <textarea rows="3" cols="165" name="risk-input" placeholder="" required></textarea>
+        <br>
         <br>
         <label for="environmentality" class="question">How much do you care about the environment?</label>
         <br>
-        <textarea rows="3" cols="165" name="env-input" placeholder=""></textarea>
+        <br>
+        <textarea rows="3" cols="165" name="env-input" placeholder="" required></textarea>
+        <br>
         <br>
         <label for="politician" class="question">How much do you care about insider trading?</label>
+        <br><br>
+        <textarea rows="3" cols="165" name="pol-input" placeholder="" required></textarea>
         <br>
-        <textarea rows="3" cols="165" name="pol-input" placeholder=""></textarea>
         <br>
         <label for="sentiment" class="question">How much do you care about public sentiment regarding this company?</label>
         <br>
-        <textarea rows="3" cols="165" name="sent-input" placeholder=""></textarea>
+        <br>
+        <textarea rows="3" cols="165" name="sent-input" placeholder="" required></textarea>
+        <br>
         <br>
         <input class = "promptsubmitbutton" type="submit" value="submit">
     </form>
