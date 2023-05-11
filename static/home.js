@@ -1,1 +1,0 @@
-gsap.fromTo('.container', {y: 100, opacity: 0}, {y: 0, duration: 1, opacity: 1})

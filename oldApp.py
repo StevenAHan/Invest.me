@@ -1,4 +1,3 @@
-# %%
 from re import I
 from flask import Flask, render_template, request, url_for, flash, redirect, make_response
 from flask_sqlalchemy import SQLAlchemy
@@ -18,24 +17,20 @@ from dateutil.relativedelta import relativedelta
 import json
 import pymysql
 
-# %%
 pymysql.install_as_MySQLdb()
 
-# %%
-df = pd.DataFrame({1:[1,2,3]})
-
-# %%
 app = Flask(__name__)
 
-# %%
 def get_chart(symbol):
     end = datetime.date.today() - datetime.timedelta(days=1)
     start = end - datetime.timedelta(days=650)
     data = yf.download(symbol, start, end)['Adj Close'].to_frame()
+
     data['SMA50'] = data['Adj Close'].rolling(50).mean()
     data['SMA200'] = data['Adj Close'].rolling(200).mean()
     data.dropna(inplace=True)
     data.reset_index(inplace=True)
+
     dates = pd.date_range(start=start, end=end, freq='MS')
     fig = px.line(data, x="Date", y=['Adj Close', 'SMA50', 'SMA200'],
                   title=symbol + ' Stock Price Versus 50 & 200 Moving Averages')
@@ -45,17 +40,17 @@ def get_chart(symbol):
                       legend_title='Indicator')
     return fig
 
-# %%
+
 def esg_pie(companies):
     df_pie = pd.DataFrame(companies)
     df = getDB()
     df_pie['totalEsg'] = df['totalEsg']
+
     fig = px.pie(df_pie, values='totalEsg', names='Symbol', title='ESG Score Percentages of Selected Companies',
                  hole=.2)
     fig.update_traces(textposition='inside', textinfo='percent+label')
     return fig
 
-# %%
 def financials_chart(companies):
     df_chart = pd.DataFrame(companies)
     df = getDB()
@@ -65,7 +60,9 @@ def financials_chart(companies):
     df_chart['Return on Assets'] = df['ReturnOnAssetsTTM']
     df_chart['Return on Equity'] = df['ReturnOnEquityTTM']
     df_chart['Revenue'] = df['RevenueTTM']
+
     fig = px.bar(df_chart, x='Company', y='Profit Margin', barmode='group')
+
     dropdown_options = [
         {'label': 'Profit Margin', 'value': 'Profit Margin'},
         {'label': 'Operating Margin', 'value': 'Operating Margin'},
@@ -73,6 +70,7 @@ def financials_chart(companies):
         {'label': 'Return on Equity', 'value': 'Return on Equity'},
         {'label': 'Revenue', 'value': 'Revenue'}
     ]
+
     fig.update_layout(
         updatemenus=[
             dict(
@@ -99,11 +97,11 @@ def financials_chart(companies):
     )
     return fig
 
-# %%
 def getDB():
     group_username = "quartic_computing"
     group_password = "lEm25xfjJe4="
     db_name = "quartic_computing"
+
     conn_string = 'mysql://{user}:{password}@{host}:{port}/{db}?charset={encoding}'.format(
         user=group_username,
         password=group_password,
@@ -114,13 +112,14 @@ def getDB():
     )
     engine = create_engine(conn_string)
     query = 'SELECT * FROM Quantic_data'
+
     return pd.read_sql_query(sql=text(query), con=engine.connect()).tail(-1)
 
-# %%
 def getFeedback():
     group_username = "quartic_computing"
     group_password = "lEm25xfjJe4="
     db_name = "quartic_computing"
+
     conn_string = 'mysql://{user}:{password}@{host}:{port}/{db}?charset={encoding}'.format(
         user=group_username,
         password=group_password,
@@ -131,13 +130,14 @@ def getFeedback():
     )
     engine = create_engine(conn_string)
     query = 'SELECT * FROM Survey_data'
+
     return pd.read_sql_query(sql=text(query), con=engine.connect())
 
-# %%
 def uploadFeedback(acc, spread, questions):
     group_username = "quartic_computing"
     group_password = "lEm25xfjJe4="
     db_name = "quartic_computing"
+
     conn_string = 'mysql://{user}:{password}@{host}:{port}/{db}?charset={encoding}'.format(
         user=group_username,
         password=group_password,
@@ -159,22 +159,23 @@ def uploadFeedback(acc, spread, questions):
           method='multi'
     )
 
-# %%
+
+
 def convertStringToh3(strList):
     for i in range(len(strList)):
         strList[i] = "<h3>" + strList[i] + "</h3>"
     return strList.join(" ")
 
-# %%
+
 def convertCompanyDFToButtons(df):
     company_names = df['Name'].tolist()
     company_symbols = df["Symbol"].tolist()
     companiesHTML = ""
     for i in range(len(company_names)):
-        companiesHTML += f"<a class='companyList' href='/company/{company_symbols[i]}'> {company_names[i]} </a>"
+        companiesHTML += f"<a class='companyList' href='/company/{company_symbols[i]}'> {company_names[i]} </a> <br>"
     return companiesHTML
 
-# %%
+
 def getSentiment(input):
     endpoint = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/3d4468af-8ad0-4453-9535-72f90c9eb5c4/v1/analyze"
 
@@ -183,6 +184,7 @@ def getSentiment(input):
     # and can run out quickly if multiple people use these
     username = "apikey"
     password = "-OwF1ab-S1ekafX-ps_dSnaFE_Q0eYBf9wtTdcVV2x0B"
+
     parameters = {
         'features': 'emotion,sentiment',
         'version': '2022-04-07',
@@ -190,30 +192,29 @@ def getSentiment(input):
         'language': 'en',
         # url = url_to_analyze, this is an alternative to sending the text
     }
+
     resp = requests.get(endpoint, params=parameters, auth=(username, password))
+
     return resp.json()['sentiment']['document']['score']
 
-# %% [markdown]
-# Default route
 
-# %%
+# Default route
 @app.route("/")
 def home():
     return render_template("home.html")
 
-# %%
+
 @app.route("/data")
 def data():
     df = getDB()
     return render_template("data.html", tables=[df.to_html(classes='data')], titles=df.columns.values)
 
-# %%
 @app.route("/getfeedback")
 def fbdata():
     df = getFeedback()
     return render_template("feedbackdata.html", tables=[df.to_html(classes='fb')], titles=df.columns.values)
 
-# %%
+
 def filtered_df(risk_input, sent_input, env_input, pol_input, df):
     print("into the function")
     print("mean:", df['Beta'].mean())
@@ -231,7 +232,7 @@ def filtered_df(risk_input, sent_input, env_input, pol_input, df):
     print("return")
     return rslt_df
 
-# %%
+
 @app.route("/prompt", methods=["GET", "POST"])
 def prompt():
     # if the form is submitted
@@ -275,24 +276,23 @@ def prompt():
         return render_template("result.html", companies=companies, listHTML=listHTML, graphJSON1=graphJSON1, graphJSON2=graphJSON2)
     return render_template("prompt.html")
 
-# %% [markdown]
-# @app.route("/result")<br>
-# def result():<br>
+
+# @app.route("/result")
+# def result():
 #     return render_template("result.html")
 
-# %%
 @app.route("/feedback")
 def feedback():
     return render_template("feedback.html")
 
-# %%
+
 @app.route("/feedback-submitted", methods=["GET", "POST"])
 def fbsb():
     if (request.method == "POST"):
         uploadFeedback(request.form["Accuracy"], request.form["Spreadability"], request.form["Questions"])
     return render_template("feedbacksub.html")
 
-# %%
+
 @app.route("/company/<string:company_symbol>")
 def company(company_symbol):
     df = getDB()
@@ -302,13 +302,13 @@ def company(company_symbol):
     company["PredictedPrice"] = round(company["PredictedPrice"], 2)
     return render_template("companyInfo.html", company=company, graphJSON=graphJSON)
 
-# %%
+
 @app.route("/companies")
 def companies():
     df = getDB()
     companiesHTML = convertCompanyDFToButtons(df)
     return render_template("companies.html", companies=companiesHTML)
 
-# %%
+
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)

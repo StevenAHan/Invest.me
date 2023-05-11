@@ -2,7 +2,7 @@
 {% block content %} 
 
 {{back_button|safe}}
-  <h1 class='compName'>{{company["Name"]}}</h1>
+  <h1 class='compName prompt-title'>{{company["Name"]}}</h1>
 
   <p class='compSymbol'>Symbol: {{company["Symbol"]}}</p>
   <p>Stock Price: ${{company["StockPrice"]}} Predicted Price: ${{company["PredictedPrice"]}}</p>
@@ -20,7 +20,7 @@
       Plotly.plot('chart',graphs,{});
     </script>
 
-    <ul class="list">
+    <ul class="finlist">
       <li>Stock Price:&ensp;<span id='stock-price'></span></li>
       <li>Market Capitalization:&ensp;<span id='market-cap'></span></li>
       <li>52 Week Range:&ensp;<span id='52-week-range'></span></li>

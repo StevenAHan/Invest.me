@@ -2,9 +2,7 @@
 {% block content %} 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <header class = "parallax-header2">
-    <img src="static/img/usadigital.png" class="background2">
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>br><br>
-    <h1 class = "sp500-title2">Results</h1>
+    <h1 class = "sp500-title2 prompt-title">Results</h1>
 </header>
 <h2 class="company-recommendations">We think that these companies are for you: </h2>
 <div class="data-shell">
@@ -17,14 +15,16 @@
         {{listHTML|safe}}
     </ul>
 </div>
-<div class="resultbutton-wrapper">
-    <button onclick="window.location.href='/prompt';" class="button">Try Again?</button>
-    <button onclick="window.location.href='/feedback';" class="button">Give Us Feedback!</button>
-</div>
+
 <h2 class = "results-elaborate">Click the tiles for more detailed projections and financial data</h2>
 <h2 class="results-elaborate2">Portfolio overview below</h2>
 <div id='chart1' class='chart1'></div>
 <div id='chart2' class='chart2'></div>
+
+<div class="resultbutton-wrapper">
+    <button onclick="window.location.href='/prompt';" class="button">Try Again?</button>
+    <button onclick="window.location.href='/feedback';" class="button">Give Us Feedback!</button>
+</div>
 {% endblock %}
 
 {% block after %}

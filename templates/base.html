@@ -8,12 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     {% block header %}  {% endblock %}
   </head>
   <body>
     <nav class = "menubar">
-      <div class="logo"><a href="/"><img src="static/img/Quantic Computing.jpeg"></a></div>
+      <div class="logo"><a href="/"><img src="{{ url_for('static', filename='img/Quantic Computing.jpeg')}}"></a></div>
       <div class="nav-items">
         <a href="/companies">List of Companies</a>
         <a href="/prompt">Get Started!</a>

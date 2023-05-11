@@ -12,40 +12,6 @@
 
 * {
   font-family: Tiempos, serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.cookie-container {
-  margin: 0;
-  padding: 1rem;
-  box-sizing: border-box;
-  background: linear-gradient(260deg, #9b6c50 0%, #4f2626 100%);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 10rem;
-  width: 20rem;
-  display:flex;
-  color: white;
-  border-radius: 1.2rem;
-  overflow: hidden;
-}
-
-.cookie-title {
-  font-size: 1.2rem;
-  font-weight:lighter;
-}
-
-.cookie-subtitle {
-  font-weight: bold;
-}
-
-.cookie-button {
-  border-style: none;
-  padding: 1rem 2rem;
 }
 
 nav {
@@ -86,7 +52,7 @@ nav .logo a {
   text-align: center;
 }
 
-.nav-items a {
+nav .nav-items a {
   color: black;
   text-decoration: none;
   margin-left: 20px;
@@ -109,8 +75,9 @@ h1.prompt-bigtitle {
   margin: 2%;
   margin-left: 10%;
   margin-right: 10%;
+  color: white;
   background-color: #4500ce;
-  height: 10rem;
+  height: 5rem;
   border-radius: 1.2rem;
 }
 
@@ -180,44 +147,17 @@ p {
   transition: all 0.2s ease-in-out;
 }
 
-.companies-container {
-  display: grid;
-  padding: 6rem;
-  grid-gap: 0.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  background-color: white;
-}
-
-.companies-container-special {
-  display: grid;
-  padding: 1rem;
-  grid-gap: 0.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  background-color: white;
-  margin-bottom: 0;
-}
-
-* .button {
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: box-shadow, transform;
-  transition-property: box-shadow, transform;
-}
-
-* .button:hover {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
 
 .button:hover, input[type=submit]:hover {
   background-color: #4500ce;
 }
 
+.center {
+  text-align: center;
+}
+
 .companyList {
   display: inline-block;
-  height: 5.2rem;
-  width: 11rem;
   background-color: #5E17EB;
   color: white;
   padding: 10px 20px;
@@ -228,18 +168,11 @@ p {
   font-weight: bold;
   font-family: serif;
   transition: all 0.2s ease-in-out;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: box-shadow, transform;
-  transition-property: box-shadow, transform;
 }
 
 .companyList:hover {
   background-color: #4500ce;
   color: white;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
 }
 
 nav::before { /* Add pseudo-element to both the nav and container */
@@ -258,8 +191,8 @@ nav::before { /* Add pseudo-element to both the nav and container */
   position: static;
   left: 25px;
   border: 3px solid #4500ce;
-  padding: 0px;
-
+  padding: 10px;
+  width: 95%;
 }
 
 h2.SubHeading{
@@ -282,128 +215,27 @@ table td{
   font-size: 20px;
 }
 
-.sp500-title {
-  font-size: 5rem;
-  color: white;
-  text-shadow: 0 0 10px black;
+.companies-container {
+  display: grid;
+  padding: 6rem;
+  grid-gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  background-color: white;
 }
 
-.sp500-title2 {
-  font-size: 5rem;
-  color: white;
-  text-shadow: 0 0 10px black;
-}
-
-.parallax-wrapper {
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  perspective: 10px;
-}
-
-.parallax-header {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 125%;
-  transform-style: preserve-3d;
-  z-index: -1;
-}
-
-.parallax-header2 {
-  height: 100%;
-  z-index: -1;
-  margin-bottom: 35rem;
-}
-
-.background, .foreground {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
-.background {
-  transform: translateZ(-10px) scale(2);
-}
-
-.foreground {
-  transform: translateZ(-5px) scale(1.5);
-}
-
-.background2 {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
-.form-wrapper {
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.promptsubmitbuttion {
-  float: right;
-}
-
-.data-shell {
-  margin-left: 5%;
-  margin-right: 25%;
-}
-
-.justification-container {
-  margin: 0;
+.companies-container-special {
+  display: grid;
   padding: 1rem;
-  box-sizing: border-box;
-  background: #5E17EB;
-  position: absolute;
-  top: 127.2%;
-  left: 85%;
-  transform: translate(-50%, -50%);
-  height: 10rem;
-  width: 25rem;
-  display:flex;
-  color: white;
-  border-radius: 1.2rem;
-  overflow: hidden;
-  line-height: 2;
-}
-
-.results-elaborate, .results-elaborate2 {
-  text-align: center;
-}
-
-.results-elaborate {
-  margin-top: 2.5rem;
-}
-
-.results-elaborate2 {
-  text-size-adjust: 20%;
+  grid-gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  background-color: white;
+  margin-bottom: 0;
 }
 
 .resultbutton-wrapper {
-  margin-left: 30%;
+  justify-content: center;
 }
 
-.company-recommendations {
-  margin-left: 5rem;
-}
-
-.companyinfo-block1 {
-  margin: 10%;
-  padding: 10rem;
-  background-color: #5E17EB;
-}
-
-.marginkeeper {
-  margin: 10%;
-  padding: 10rem;
-  background-color: #5E17EB;
-}
 /* .button {
   display: inline-block;
   padding: 10px 20px;
