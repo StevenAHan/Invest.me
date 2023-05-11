@@ -191,12 +191,23 @@ nav::before { /* Add pseudo-element to both the nav and container */
 }
 
 .chart {
-  align-self: flex-start;
-  position: static;
-  left: 25px;
+  position: absolute;
+  right: 35px;
   border: 3px solid #4500ce;
   padding: 10px;
-  width: 95%;
+  width: 30%;
+  top:600px;
+  overflow: hidden; 
+  white-space: nowrap;
+}
+
+.chart2 {
+  align-self: flex-start;
+  position: static;
+  left: 35px;
+  border: 3px solid #4500ce;
+  padding: 10px;
+  width: 60%;
 }
 
 h2.SubHeading{
@@ -241,14 +252,7 @@ table td{
   text-align: center;
 }
 
-/* .justification-container {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  border-radius: 1.2rem;
-} */
-
-.justification-container li {
+li {
   list-style-type: none;
   list-style: none;
   font-size: 20px;
@@ -279,7 +283,6 @@ table td{
 }
 
 .button:hover, a:hover, input[type=submit]:hover {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
 }

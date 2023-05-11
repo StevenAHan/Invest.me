@@ -7,12 +7,14 @@
   <p class='compSymbol'>Symbol: {{company["Symbol"]}}</p>
   <p>Stock Price: ${{company["StockPrice"]}} Predicted Price: ${{company["PredictedPrice"]}}</p>
   <p class='description'>{{company["Description"]}}</p>
-  <div id='chart' class='chart'></div>
+
+  <h2 class="SubHeading"> Financial Data</h2>
+
+  <div id='chart' class='chart2'></div>
 {% endblock %}
 
 {% block after %}
 <div class="marginkeeper">
-  <h2 class="SubHeading"> Financial Data</h2>
   <div class = 'chart'>
     <script class='chart' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
     <script class='chart' type='text/javascript'>
@@ -49,7 +51,7 @@
 
   <h2 class='SubHeading'>  ESG, Politicial Trading, and Sentiment Information </h3>
   <table id='table'>
-    <tr>
+    <tr class="finlist">
       <td>Sector: {{company["Sector"]}}</td> 
       <td>Industry: {{company["Industry"]}}</td>
       <td>Environment Score: {{company["environmentScore"]}}</td>
