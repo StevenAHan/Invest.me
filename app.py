@@ -169,9 +169,12 @@ def convertStringToh3(strList):
 def convertCompanyDFToButtons(df):
     company_names = df['Name'].tolist()
     company_symbols = df["Symbol"].tolist()
+    df["ProportionalUndervalued"] = df["ProportionalUndervalued"] * 100
+    df["ProportionalUndervalued"] = round(df["ProportionalUndervalued"], 1)
+    company_price = df["ProportionalUndervalued"].tolist()
     companiesHTML = ""
     for i in range(len(company_names)):
-        companiesHTML += f"<a class='companyList' href='/company/{company_symbols[i]}'> {company_names[i]} </a>"
+        companiesHTML += f"<a class='companyList' href='/company/{company_symbols[i]}'> {company_names[i]} ({company_price[i]}%)</a>"
     return companiesHTML
 
 # %%
