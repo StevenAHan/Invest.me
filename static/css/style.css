@@ -289,7 +289,7 @@ table td{
 }
 
 .sp500-title2 {
-  font-size: 39.5rem;
+  font-size: 5rem;
   color: white;
   text-shadow: 0 0 10px black;
 }
@@ -382,7 +382,7 @@ table td{
 }
 
 .results-elaborate2 {
-  text-size-adjust: 50%;
+  text-size-adjust: 20%;
 }
 
 .resultbutton-wrapper {
