@@ -234,6 +234,34 @@ def filtered_df(risk_input, sent_input, env_input, pol_input, df):
     print("return")
     return rslt_df
 
+import speech_recognition as sr
+
+
+#brew install flac
+# brew install portaudio
+# pip install pyaudio
+
+def record():
+    #return "hello"
+    # obtain audio from the microphone
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Say something!")
+        audio = r.listen(source, phrase_time_limit = 5)
+    #try:
+    s = r.recognize_google(audio, language="en-US")
+    print("Text: " + s)
+    # except Exception as e:
+    #     print("Exception: " + str(e))
+    return s
+
+@app.route("/prompt5", methods=["GET", "POST"])
+def prompt5():
+    if request.method == 'POST':
+        # write your Python code here
+        result_text = record()
+    return render_template('prompt5.html', result3=result_text)
+
 # %%
 @app.route("/prompt", methods=["GET", "POST"])
 def prompt():
