@@ -135,29 +135,16 @@ p {
   text-align: center;
 }
 
-.button, input[type=submit] {
-  background-color: #5E17EB;
-  border: none;
-  border-radius: 5px;
-  color: #ffffff !important;
-  font-size: 20px;
-  font-weight: 500;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-
-.button:hover, input[type=submit]:hover {
-  background-color: #4500ce;
-}
-
 .center {
   text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .companyList {
   display: inline-block;
+  height: 3.9rem;
+  width: 11rem;
   background-color: #5E17EB;
   color: white;
   padding: 10px 20px;
@@ -168,6 +155,10 @@ p {
   font-weight: bold;
   font-family: serif;
   transition: all 0.2s ease-in-out;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
 }
 
 label {
@@ -177,6 +168,9 @@ label {
 .companyList:hover {
   background-color: #4500ce;
   color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 nav::before { /* Add pseudo-element to both the nav and container */
@@ -234,9 +228,13 @@ table td{
 .companies-container {
   display: grid;
   padding: 6rem;
-  grid-gap: 0.8rem;
+  grid-column-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   background-color: white;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
 }
 
 .companies-container-special {
@@ -258,35 +256,6 @@ li {
   list-style: none;
   font-size: 20px;
  }
-
- .companies-container {
-  display: grid;
-  padding: 6rem;
-  grid-gap: 0.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  background-color: white;
-}
-
-.companies-container-special {
-  display: grid;
-  padding: 1rem;
-  grid-gap: 0.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  background-color: white;
-  margin-bottom: 0;
-}
-
-.button {
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: box-shadow, transform;
-  transition-property: box-shadow, transform;
-}
-
-.button:hover, a:hover, input[type=submit]:hover {
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-}
 
 .logo:hover {
   box-shadow: none;
@@ -345,7 +314,7 @@ li {
 .make-body {
   background-color: white;
   padding: 2%;
-  padding-bottom: 8%;
+  padding-bottom: 3%;
 }
 
 .make-body-tighter {
@@ -353,6 +322,7 @@ li {
   padding: 10%;
   padding-top: 0%;
   padding-bottom: 8%;
+  text-align: center;
 }
 /* parallax end */
 
@@ -388,4 +358,69 @@ header.banner-header2 {
 
 .listitem-container {
   padding: 10%;
+}
+
+/* enhanced button behavior */
+.button, input[type=submit] {
+  margin: 0.2rem;
+  background-color: #5E17EB;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff !important;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+* .button {
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+
+* .button:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.button:hover, input[type=submit]:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  background-color: #4500ce;
+}
+
+.button {
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+
+.button:hover, a:hover, input[type=submit]:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.force-sidebyside {
+  display: inline-block;
+}
+
+.prompt-submit-button {
+  height: 3.2rem;
+  width: 36rem;
+  margin: 1rem !important;
+  background-color: #5E17EB;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff !important;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }

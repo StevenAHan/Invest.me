@@ -17,34 +17,37 @@
     </div>
     <div class="inline-wrapper">
         <form action="/prompt" method="POST">
-            <label for="risk" class="question">Do you like taking risks?</label>
-            <br>
+            <span class="force-sidebyside">
+                <label for="risk" class="question">Do you like taking risks?</label>
+                <input type="submit" name="riskvoice" value="Speak">
+            </span>
             <br>
             <textarea rows="3" cols="165" name="risk-input" placeholder="">{{risktext}}</textarea>
-            <input type="submit" name="riskvoice" value="Speak Your Risk Preferences">
             <br>
             <br>
-            <label for="environmentality" class="question">How much do you care about the environment?</label>
-            <br>
+            <span class="force-sidebyside">
+                <label for="environmentality" class="question">How much do you care about the environment?</label>
+                <input type="submit" name="envvoice" value="Speak">
+            </span>
             <br>
             <textarea rows="3" cols="165" name="env-input" placeholder="">{{envtext}}</textarea>
-            <input type="submit" name="envvoice" value="Speak Your Environmental Preferences">
             <br>
             <br>
-            <label for="politician" class="question">How much do you care about politician trading?</label>
-            <br><br>
+            <span class="force-sidebyside">
+                <label for="politician" class="question">How much do you care about politician trading?</label>
+                <input type="submit" name="polvoice" value="Speak">
+            </span>
+            <br>
             <textarea rows="3" cols="165" name="pol-input" placeholder="">{{poltext}}</textarea>
-            <input type="submit" name="polvoice" value="Speak Your Polician Trading Preferences">
             <br>
             <br>
-            <label for="sentiment" class="question">How much do you care about public sentiment regarding this company?</label>
-            <br>
+            <span class="force-sidebyside">
+                <label for="sentiment" class="question">How much do you care about public sentiment regarding this company?</label>
+                <input type="submit" name="sentvoice" value="Speak">
+            </span>
             <br>
             <textarea rows="3" cols="165" name="sent-input" placeholder="">{{senttext}}</textarea>
-            <input type="submit" name="sentvoice" value="Speak Your Sentiment Preferences">
-            <br>
-            <br>
-            <input class = "promptsubmitbutton" type="submit" value="submit" name="submit">
+            <div class = "center"><input class = "prompt-submit-button" type="submit" value="Submit" name="submit"></div>
         </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
