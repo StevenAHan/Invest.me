@@ -260,7 +260,7 @@ def prompt5():
     if request.method == 'POST':
         # write your Python code here
         result_text = record()
-    return render_template('prompt5.html', result3=result_text)
+    return render_template('prompt.html', result3=result_text)
 
 # %%
 @app.route("/prompt", methods=["GET", "POST"])
