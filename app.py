@@ -1,3 +1,6 @@
+# %% [markdown]
+# %%
+
 # %%
 from re import I
 from flask import Flask, render_template, request, url_for, flash, redirect, make_response
@@ -18,14 +21,26 @@ from dateutil.relativedelta import relativedelta
 import json
 import pymysql
 
+# %% [markdown]
+# %%
+
 # %%
 pymysql.install_as_MySQLdb()
+
+# %% [markdown]
+# %%
 
 # %%
 df = pd.DataFrame({1:[1,2,3]})
 
+# %% [markdown]
+# %%
+
 # %%
 app = Flask(__name__)
+
+# %% [markdown]
+# %%
 
 # %%
 def get_chart(symbol):
@@ -45,6 +60,9 @@ def get_chart(symbol):
                       legend_title='Indicator')
     return fig
 
+# %% [markdown]
+# %%
+
 # %%
 def esg_pie(companies):
     df_pie = pd.DataFrame(companies)
@@ -54,6 +72,9 @@ def esg_pie(companies):
                  hole=.2)
     fig.update_traces(textposition='inside', textinfo='percent+label')
     return fig
+
+# %% [markdown]
+# %%
 
 # %%
 def financials_chart(companies):
@@ -99,6 +120,9 @@ def financials_chart(companies):
     )
     return fig
 
+# %% [markdown]
+# %%
+
 # %%
 def getDB():
     group_username = "quartic_computing"
@@ -116,6 +140,9 @@ def getDB():
     query = 'SELECT * FROM Quantic_data'
     return pd.read_sql_query(sql=text(query), con=engine.connect()).tail(-1)
 
+# %% [markdown]
+# %%
+
 # %%
 def getFeedback():
     group_username = "quartic_computing"
@@ -132,6 +159,9 @@ def getFeedback():
     engine = create_engine(conn_string)
     query = 'SELECT * FROM Survey_data'
     return pd.read_sql_query(sql=text(query), con=engine.connect())
+
+# %% [markdown]
+# %%
 
 # %%
 def uploadFeedback(acc, spread, questions):
@@ -159,11 +189,17 @@ def uploadFeedback(acc, spread, questions):
           method='multi'
     )
 
+# %% [markdown]
+# %%
+
 # %%
 def convertStringToh3(strList):
     for i in range(len(strList)):
         strList[i] = "<h3>" + strList[i] + "</h3>"
     return strList.join(" ")
+
+# %% [markdown]
+# %%
 
 # %%
 def convertCompanyDFToButtons(df):
@@ -176,6 +212,9 @@ def convertCompanyDFToButtons(df):
     for i in range(len(company_names)):
         companiesHTML += f"<a class='companyList' href='/company/{company_symbols[i]}'> {company_names[i]} ({company_price[i]}%)</a>"
     return companiesHTML
+
+# %% [markdown]
+# %%
 
 # %%
 def getSentiment(input):
@@ -197,12 +236,19 @@ def getSentiment(input):
     return resp.json()['sentiment']['document']['score']
 
 # %% [markdown]
+# %% [markdown]<br>
 # Default route
+
+# %% [markdown]
+# %%
 
 # %%
 @app.route("/")
 def home():
     return render_template("home.html")
+
+# %% [markdown]
+# %%
 
 # %%
 @app.route("/data")
@@ -210,11 +256,17 @@ def data():
     df = getDB()
     return render_template("data.html", tables=[df.to_html(classes='data')], titles=df.columns.values)
 
+# %% [markdown]
+# %%
+
 # %%
 @app.route("/getfeedback")
 def fbdata():
     df = getFeedback()
     return render_template("feedbackdata.html", tables=[df.to_html(classes='fb')], titles=df.columns.values)
+
+# %% [markdown]
+# %%
 
 # %%
 def filtered_df(risk_input, sent_input, env_input, pol_input, df):
@@ -234,13 +286,10 @@ def filtered_df(risk_input, sent_input, env_input, pol_input, df):
     print("return")
     return rslt_df
 
+# %%
 import speech_recognition as sr
 
-
-#brew install flac
-# brew install portaudio
-# pip install pyaudio
-
+# %%
 def record():
     #return "hello"
     # obtain audio from the microphone
@@ -254,6 +303,9 @@ def record():
     # except Exception as e:
     #     print("Exception: " + str(e))
     return s
+
+# %% [markdown]
+# %%
 
 # %%
 @app.route("/prompt", methods=["GET", "POST"])
@@ -288,10 +340,11 @@ def prompt():
             print(df)
             companies = convertCompanyDFToButtons(df)
             listHTML = ""
-            listHTML += "<li>You like to take risks</li>" if risk_ss > 0 else "<li>You are adverse to risk</li>"
-            listHTML += "<li>You care about public sentiment</li>" if sent_ss > 0 else "<li>You don't care too much about public sentiment</li>"
-            listHTML += "<li>You care a lot about the environment</li>" if env_ss > 0 else "<li>You aren't focused on environmentality</li>"
-            listHTML += "<li>You care about insider trading</li>" if pol_ss > 0 else "<li>You don't care that much about insider trading</li>"
+            listHTML = ""
+            listHTML += '<li class = "listitem"> You like to take risks</li>' if risk_ss > 0 else '<li class = "listitem"> You are adverse to risk</li><br>'
+            listHTML += '<li class = "listitem"> You care about public sentiment</li>' if sent_ss > 0 else '<li class = "listitem"> You do not care too much about public sentiment</li><br>'
+            listHTML += '<li class = "listitem"> You care a lot about the environment</li>' if env_ss > 0 else '<li class = "listitem"> You are not focused on environmentality</li><br>'
+            listHTML += '<li class = "listitem"> You care about insider trading</li>' if pol_ss > 0 else '<li class = "listitem"> You do not care that much about insider trading</li>'
             compList = df['Symbol'].head(5)
             fig = esg_pie(compList)
             graphJSON1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
@@ -319,14 +372,15 @@ def prompt():
     return render_template("prompt.html")
 
 # %% [markdown]
-# @app.route("/result")<br>
-# def result():<br>
-#     return render_template("result.html")
+# %%
 
 # %%
 @app.route("/feedback")
 def feedback():
     return render_template("feedback.html")
+
+# %% [markdown]
+# %%
 
 # %%
 @app.route("/feedback-submitted", methods=["GET", "POST"])
@@ -334,6 +388,9 @@ def fbsb():
     if (request.method == "POST"):
         uploadFeedback(request.form["Accuracy"], request.form["Spreadability"], request.form["Questions"])
     return render_template("feedbacksub.html")
+
+# %% [markdown]
+# %%
 
 # %%
 @app.route("/company/<string:company_symbol>")
@@ -345,6 +402,9 @@ def company(company_symbol):
     company["PredictedPrice"] = round(company["PredictedPrice"], 2)
     return render_template("companyInfo.html", company=company, graphJSON=graphJSON)
 
+# %% [markdown]
+# %%
+
 # %%
 @app.route("/companies")
 def companies():
@@ -352,6 +412,11 @@ def companies():
     companiesHTML = convertCompanyDFToButtons(df)
     return render_template("companies.html", companies=companiesHTML)
 
+# %% [markdown]
+# %%
+
 # %%
 if __name__ == "__main__":
     app.run(debug=False)
+
+
