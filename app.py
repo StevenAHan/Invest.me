@@ -20,6 +20,7 @@ import plotly
 from dateutil.relativedelta import relativedelta
 import json
 import pymysql
+from flask_ngrok import run_with_ngrok
 
 # %% [markdown]
 # %%
@@ -38,6 +39,7 @@ df = pd.DataFrame({1:[1,2,3]})
 
 # %%
 app = Flask(__name__)
+run_with_ngrok(app) 
 
 # %% [markdown]
 # %%
@@ -417,6 +419,6 @@ def companies():
 
 # %%
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run()
 
 
