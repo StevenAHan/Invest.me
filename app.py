@@ -260,8 +260,6 @@ def record():
 def prompt():
     # if the form is submitted
     if(request.method == "POST"):
-        print("hi")
-        print(request.form)
         if "submit" in request.form:
             risk_input = request.form['risk-input']  # strings
             print("risk:", risk_input)
