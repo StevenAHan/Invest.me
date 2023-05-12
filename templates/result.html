@@ -1,46 +1,45 @@
 {% extends 'base.html' %}
 {% block content %} 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<header class = "parallax-header2">
-    <h1 class = "sp500-title2 prompt-title">Results</h1>
-</header>
-<h2 class="company-recommendations">We think that these companies are for you: </h2>
-<div class="data-shell">
-        <div class="companies-container-special">
-            {{companies|safe}}
-        </div>
-</div>
-<h2 class="company-recommendations"> Why we think this:</h2>
-<div class="justification-container">
-    <ul>
+<header class = "banner-header2">
+    <img src="static/img/chart.png" class="background2">
+    <ul class = "listitem-container">
         {{listHTML|safe}}
     </ul>
+    <h1 class = "banner-title">Results</h1>
+</header>
+<div class="make-body-tighter">
+    <h2 class="results-elaborate">We think that these companies are for you: </h2>
+    <div class="data-shell">
+            <div class="companies-container-special">
+                {{companies|safe}}
+            </div>
+    </div>
+    <h2 class = "results-elaborate">Click the tiles for more detailed projections and financial data</h2>
+    <h2 class="results-elaborate2">Portfolio overview below:</h2>
+    <div id='chart1' class='chart1'></div>
+    <h2 class="results-elaborate2">Financial Comparisons:</h2>
+    <div id='chart2' class='chart2'></div>
+
+    <div class="resultbutton-wrapper">
+        <button onclick="window.location.href='/prompt';" class="button">Try Again?</button>
+        <button onclick="window.location.href='/feedback';" class="button">Give Us Feedback!</button>
+    </div>
+    {% endblock %}
+
+    {% block after %}
+    <script class='chart1' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script class='chart1' type='text/javascript'>
+        var graphs = {{graphJSON1 | safe}};
+        Plotly.plot('chart1',graphs,{});
+    </script>
+    <div id='chart2' class='chart2'></div>
+    <script class='chart2' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script class='chart2' type='text/javascript'>
+        var graphs = {{graphJSON2 | safe}};
+        Plotly.plot('chart2',graphs,{});
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src = "static/result.js"></script>
+    {% endblock %}
 </div>
-
-<h2 class = "results-elaborate">Click the tiles for more detailed projections and financial data</h2>
-<h2 class="results-elaborate2">Portfolio overview below:</h2>
-<div id='chart1' class='chart1'></div>
-<h2 class="results-elaborate2">Financial Comparisons:</h2>
-<div id='chart2' class='chart2'></div>
-
-<div class="resultbutton-wrapper">
-    <button onclick="window.location.href='/prompt';" class="button">Try Again?</button>
-    <button onclick="window.location.href='/feedback';" class="button">Give Us Feedback!</button>
-</div>
-{% endblock %}
-
-{% block after %}
-<script class='chart1' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-<script class='chart1' type='text/javascript'>
-    var graphs = {{graphJSON1 | safe}};
-    Plotly.plot('chart1',graphs,{});
-</script>
-<div id='chart2' class='chart2'></div>
-<script class='chart2' src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-<script class='chart2' type='text/javascript'>
-    var graphs = {{graphJSON2 | safe}};
-    Plotly.plot('chart2',graphs,{});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src = "static/result.js"></script>
-{% endblock %}

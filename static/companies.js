@@ -1,1 +1,1 @@
-gsap.fromTo('.prompt-title', {opacity: 0}, {duration: 2, opacity: 1})
+gsap.fromTo('.sp500-title', {opacity: 0}, {duration: 3, opacity: 1})

@@ -12,6 +12,8 @@
 
 * {
   font-family: Tiempos, serif;
+  margin: 0;
+  padding: 0;
 }
 
 nav {
@@ -52,7 +54,7 @@ nav .logo a {
   text-align: center;
 }
 
-nav .nav-items a {
+.nav-items a {
   color: black;
   text-decoration: none;
   margin-left: 20px;
@@ -75,9 +77,8 @@ h1.prompt-bigtitle {
   margin: 2%;
   margin-left: 10%;
   margin-right: 10%;
-  color: white;
   background-color: #4500ce;
-  height: 5rem;
+  height: 10rem;
   border-radius: 1.2rem;
 }
 
@@ -147,17 +148,50 @@ p {
   transition: all 0.2s ease-in-out;
 }
 
+/*  */
+
+.companies-container {
+  display: grid;
+  padding: 6rem;
+  grid-gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  background-color: white;
+}
+
+.companies-container-special {
+  display: grid;
+  padding: 1rem;
+  grid-gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  background-color: white;
+  margin-bottom: 0;
+  margin-left: 20%;
+  margin-right: 20%;
+  align-items: center;
+  justify-content: center;
+}
+
+* .button {
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+
+* .button:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
 
 .button:hover, input[type=submit]:hover {
   background-color: #4500ce;
 }
 
-.center {
-  text-align: center;
-}
-
 .companyList {
   display: inline-block;
+  height: 5.2rem;
+  width: 11rem;
   background-color: #5E17EB;
   color: white;
   padding: 10px 20px;
@@ -168,15 +202,18 @@ p {
   font-weight: bold;
   font-family: serif;
   transition: all 0.2s ease-in-out;
-}
-
-label {
-  font-size: 20px;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
 }
 
 .companyList:hover {
   background-color: #4500ce;
   color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 nav::before { /* Add pseudo-element to both the nav and container */
@@ -191,14 +228,11 @@ nav::before { /* Add pseudo-element to both the nav and container */
 }
 
 .chart {
-  position: absolute;
-  right: 35px;
+  align-self: flex-start;
+  position: static;
+  left: 25px;
   border: 3px solid #4500ce;
-  padding: 10px;
-  width: 30%;
-  top:600px;
-  overflow: hidden; 
-  white-space: nowrap;
+  padding: 0px;
 }
 
 .finchart {
@@ -213,7 +247,7 @@ nav::before { /* Add pseudo-element to both the nav and container */
 
 h2.SubHeading{
   font-family: 'Tiempos', sans-serif;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   letter-spacing: -1px;
   text-align: center;
@@ -231,74 +265,16 @@ table td{
   font-size: 20px;
 }
 
-.companies-container {
-  display: grid;
-  padding: 6rem;
-  grid-gap: 0.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  background-color: white;
+.sp500-title {
+  font-size: 5rem;
+  color: white;
+  text-shadow: 0 0 10px black;
 }
 
-.companies-container-special {
-  display: grid;
-  padding: 1rem;
-  grid-gap: 0.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  background-color: white;
-  margin-bottom: 0;
-}
-
-.resultbutton-wrapper {
-  justify-content: center;
-  text-align: center;
-}
-
-li {
-  list-style-type: none;
-  list-style: none;
-  font-size: 20px;
- }
-
- .companies-container {
-  display: grid;
-  padding: 6rem;
-  grid-gap: 0.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  background-color: white;
-}
-
-.companies-container-special {
-  display: grid;
-  padding: 1rem;
-  grid-gap: 0.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  background-color: white;
-  margin-bottom: 0;
-}
-
-.button {
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: box-shadow, transform;
-  transition-property: box-shadow, transform;
-}
-
-.button:hover, a:hover, input[type=submit]:hover {
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-.logo:hover {
-  box-shadow: none;
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-/* start mods */
-
-.inline-wrapper {
-  margin-left: 10%;
-  margin-right: 10%;
+.sp500-title2 {
+  font-size: 8rem;
+  color: white;
+  text-shadow: 0 0 10px black;
 }
 
 .parallax-wrapper {
@@ -318,6 +294,18 @@ li {
   z-index: -1;
 }
 
+.parallax-header2 {
+  height: 100%;
+  z-index: -1;
+  margin-bottom: 35rem;
+}
+
+.parallax-header3 {
+  height: 100%;
+  z-index: -1;
+  margin-bottom: 22.9rem;
+}
+
 .background, .foreground {
   position: absolute;
   height: 100%;
@@ -330,6 +318,10 @@ li {
   transform: translateZ(-10px) scale(2);
 }
 
+.foreground {
+  transform: translateZ(-5px) scale(1.5);
+}
+
 .background2 {
   position: absolute;
   height: 100%;
@@ -338,44 +330,20 @@ li {
   z-index: -1;
 }
 
-.foreground {
-  transform: translateZ(-5px) scale(1.5);
+.form-wrapper {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
-.make-body {
-  background-color: white;
-  padding: 2%;
-  padding-bottom: 8%;
+.promptsubmitbuttion {
+  float: right;
 }
 
-.make-body-tighter {
-  background-color: white;
-  padding: 10%;
-  padding-top: 0%;
-  padding-bottom: 8%;
-}
-/* parallax end */
-
-/* banner settings begin */
-
-h1.banner-title {
-  font-size: 5rem;
-  color: white;
-  text-shadow: 0 0 10px black;
+.data-shell {
+  justify-content: center;
+  align-items: center;
 }
 
-header.banner-header, header.banner-header2 {
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  margin: 0;
-}
-
-header.banner-header2 {
-  margin-bottom: 22.9rem;
-}
-
-/* results page */
 .listitem {
   list-style-type: none;
   font-size: 2.2rem;
@@ -386,6 +354,54 @@ header.banner-header2 {
   text-align: center;
 }
 
-.listitem-container {
-  padding: 10%;
+.results-elaborate, .results-elaborate2 {
+  text-align: center;
+}
+
+.results-elaborate {
+  margin-top: 2.5rem;
+}
+
+.results-elaborate2 {
+  text-size-adjust: 50%;
+}
+
+.resultbutton-wrapper {
+  margin-left: 40%;
+}
+
+.center {
+  margin-left: 10%;
+}
+
+h2.h2centered {
+  text-align: center;
+}
+
+.company-recommendations {
+  margin-left: 5rem;
+}
+
+.companyinfo-block1 {
+  margin: 10%;
+  padding: 10rem;
+  background-color: #5E17EB;
+}
+
+.button {
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+
+.button:hover, a:hover, input[type=submit]:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.logo:hover {
+  box-shadow: none;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
