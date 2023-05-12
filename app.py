@@ -255,55 +255,69 @@ def record():
     #     print("Exception: " + str(e))
     return s
 
-@app.route("/prompt5", methods=["GET", "POST"])
-def prompt5():
-    if request.method == 'POST':
-        # write your Python code here
-        result_text = record()
-    return render_template('prompt.html', result3=result_text)
-
 # %%
 @app.route("/prompt", methods=["GET", "POST"])
 def prompt():
     # if the form is submitted
-    if (request.method == "POST"):
-        risk_input = request.form['risk-input']  # strings
-        print("risk:", risk_input)
-        sent_input = request.form["sent-input"]
-        print("sent:", sent_input)
-        env_input = request.form["env-input"]
-        print("env:", env_input)
-        pol_input = request.form["pol-input"]
-        print("pol:", pol_input)
-        risk_ss = getSentiment(risk_input)
-        sent_ss = getSentiment(sent_input)
-        env_ss = getSentiment(env_input)
-        pol_ss = getSentiment(pol_input)  # add this, so you get # from -1 to 1
-        print("answers:", risk_ss, sent_ss, env_ss, pol_ss)
-        df = getDB()
-        df["percentile"] = pd.to_numeric(df["percentile"], errors="coerce")
-        df["Beta"] = pd.to_numeric(df["Beta"], errors="coerce")
-        mean_value = df["percentile"].mean()
-        mean_value2 = df["Beta"].mean()
-        df["percentile"].fillna(mean_value)
-        df["Beta"].fillna(mean_value2)
-        # filter the db
-        # df will be filtered db
-        df = filtered_df(risk_ss, sent_ss, env_ss, pol_ss, df)
-        df = df.head(5)
-        print(df)
-        companies = convertCompanyDFToButtons(df)
-        listHTML = ""
-        listHTML += "<li>You like to take risks</li>" if risk_ss > 0 else "<li>You are adverse to risk</li>"
-        listHTML += "<li>You care about public sentiment</li>" if sent_ss > 0 else "<li>You don't care too much about public sentiment</li>"
-        listHTML += "<li>You care a lot about the environment</li>" if env_ss > 0 else "<li>You aren't focused on environmentality</li>"
-        listHTML += "<li>You care about insider trading</li>" if pol_ss > 0 else "<li>You don't care that much about insider trading</li>"
-        compList = df['Symbol'].head(5)
-        fig = esg_pie(compList)
-        graphJSON1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-        fig2 = financials_chart(compList)
-        graphJSON2 = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
-        return render_template("result.html", companies=companies, listHTML=listHTML, graphJSON1=graphJSON1, graphJSON2=graphJSON2)
+    if(request.method == "POST"):
+        print("hi")
+        print(request.form)
+        if "submit" in request.form:
+            risk_input = request.form['risk-input']  # strings
+            print("risk:", risk_input)
+            sent_input = request.form["sent-input"]
+            print("sent:", sent_input)
+            env_input = request.form["env-input"]
+            print("env:", env_input)
+            pol_input = request.form["pol-input"]
+            print("pol:", pol_input)
+            risk_ss = getSentiment(risk_input)
+            sent_ss = getSentiment(sent_input)
+            env_ss = getSentiment(env_input)
+            pol_ss = getSentiment(pol_input)  # add this, so you get # from -1 to 1
+            print("answers:", risk_ss, sent_ss, env_ss, pol_ss)
+            df = getDB()
+            df["percentile"] = pd.to_numeric(df["percentile"], errors="coerce")
+            df["Beta"] = pd.to_numeric(df["Beta"], errors="coerce")
+            mean_value = df["percentile"].mean()
+            mean_value2 = df["Beta"].mean()
+            df["percentile"].fillna(mean_value)
+            df["Beta"].fillna(mean_value2)
+            # filter the db
+            # df will be filtered db
+            df = filtered_df(risk_ss, sent_ss, env_ss, pol_ss, df)
+            df = df.head(5)
+            print(df)
+            companies = convertCompanyDFToButtons(df)
+            listHTML = ""
+            listHTML += "<li>You like to take risks</li>" if risk_ss > 0 else "<li>You are adverse to risk</li>"
+            listHTML += "<li>You care about public sentiment</li>" if sent_ss > 0 else "<li>You don't care too much about public sentiment</li>"
+            listHTML += "<li>You care a lot about the environment</li>" if env_ss > 0 else "<li>You aren't focused on environmentality</li>"
+            listHTML += "<li>You care about insider trading</li>" if pol_ss > 0 else "<li>You don't care that much about insider trading</li>"
+            compList = df['Symbol'].head(5)
+            fig = esg_pie(compList)
+            graphJSON1 = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+            fig2 = financials_chart(compList)
+            graphJSON2 = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
+            return render_template("result.html", companies=companies, listHTML=listHTML, graphJSON1=graphJSON1, graphJSON2=graphJSON2)
+        else:
+            risk_input = request.form['risk-input']
+            print("risk:", risk_input)
+            sent_input = request.form["sent-input"]
+            print("sent:", sent_input)
+            env_input = request.form["env-input"]
+            print("env:", env_input)
+            pol_input = request.form["pol-input"]
+            print("pol:", pol_input)
+            if "riskvoice" in request.form:
+                risk_input = record()
+            elif "sentvoice" in request.form:
+                sent_input = record()
+            elif "envvoice" in request.form:
+                env_input = record()
+            elif "polvoice" in request.form:
+                pol_input = record()
+            return render_template("prompt.html", risktext=risk_input, senttext=sent_input, envtext=env_input, poltext=pol_input)
     return render_template("prompt.html")
 
 # %% [markdown]
